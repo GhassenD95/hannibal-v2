@@ -1,0 +1,77 @@
+{
+  "pack": {
+    "name": "Tunisia NDA Pack",
+    "description": "Tunisian law pack for non-disclosure agreements (demo sample — legal review required).",
+    "version": "1.0.0",
+    "jurisdiction": "TN",
+    "metadata": {
+      "primary_language": "fr",
+      "secondary_language": "ar",
+      "demo": "true",
+      "warning": "Demo sample — legal review required"
+    },
+    "autoApproveDemoSources": true
+  },
+  "contractTypes": [
+    {
+      "name": "nda",
+      "description": "Mutual non-disclosure agreement (Tunisia).",
+      "intakeSchema": "tn_nda_intake",
+      "sectionDefinitions": [
+        {"name": "parties", "title": "Parties", "description": "Identifies the parties.", "is_required": true, "order_index": 1, "evidence_tags": ["identity"], "default_clause_titles": ["Party identification"]},
+        {"name": "confidentiality", "title": "Confidential Information", "description": "Definition and protection of confidential information.", "is_required": true, "order_index": 2, "evidence_tags": ["confidentiality"], "default_clause_titles": ["Confidentiality"]},
+        {"name": "exclusions", "title": "Exclusions", "description": "Information not deemed confidential.", "is_required": false, "order_index": 3, "evidence_tags": ["confidentiality"], "default_clause_titles": ["Confidentiality"]},
+        {"name": "term", "title": "Term and Survival", "description": "NDA duration and survival.", "is_required": true, "order_index": 4, "evidence_tags": ["termination"], "default_clause_titles": ["NDA term"]},
+        {"name": "governing_law", "title": "Governing Law", "description": "Tunisian law.", "is_required": true, "order_index": 5, "evidence_tags": ["governing_law"], "default_clause_titles": ["Governing law"]}
+      ]
+    }
+  ],
+  "intakeSchemas": [
+    {
+      "name": "tn_nda_intake",
+      "description": "Guided intake for Tunisian NDAs.",
+      "fields": [
+        {"field_name": "disclosing_party", "field_label": "Disclosing party", "field_type": "text", "is_required": true, "order_index": 1},
+        {"field_name": "receiving_party", "field_label": "Receiving party", "field_type": "text", "is_required": true, "order_index": 2},
+        {"field_name": "purpose", "field_label": "Purpose of disclosure", "field_type": "text", "is_required": true, "order_index": 3},
+        {"field_name": "jurisdiction", "field_label": "Governing law", "field_type": "select", "is_required": true, "options": ["TUNISIA"], "order_index": 4}
+      ]
+    }
+  ],
+  "clauses": [
+    {"title": "Party identification", "clause_type": "mandatory", "contract_type": "nda", "content": "This NDA is between [Disclosing Party] and [Receiving Party]. Demo sample — legal review required.", "description": "Identifies the parties"},
+    {"title": "Confidentiality", "clause_type": "mandatory", "contract_type": "nda", "content": "The Receiving Party agrees not to disclose or use Confidential Information except for [Purpose], and to perform its obligations in good faith under Article 243 of the Code des obligations et des contrats. Demo sample — legal review required.", "description": "Confidential information protection"},
+    {"title": "NDA term", "clause_type": "mandatory", "contract_type": "nda", "content": "The obligations of confidentiality survive for five (5) years after the termination of this NDA. Demo sample — legal review required.", "description": "Term and survival"},
+    {"title": "Governing law", "clause_type": "mandatory", "contract_type": "nda", "content": "This NDA is governed by Tunisian law, including the Code des obligations et des contrats (Decree of 15 December 1906, reorganized by Law No. 2005-87 of 15 August 2005). Demo sample — legal review required.", "description": "Tunisian governing law"}
+  ],
+  "validationRules": [
+    {"name": "tn_nda_required_sections_complete", "rule_type": "structure", "severity": "blocker", "applies_to": ["nda"], "config": {"required_sections": ["parties", "confidentiality", "term", "governing_law"]}, "description": "All required sections must be present."},
+    {"name": "tn_nda_placeholder_check", "rule_type": "evidence", "severity": "blocker", "applies_to": ["nda"], "config": {"patterns": ["\\[.*\\]", "\\{.*\\}"]}, "description": "No unresolved placeholders."},
+    {"name": "tn_nda_pack_match", "rule_type": "source_applicability", "severity": "blocker", "applies_to": ["nda"], "config": {}, "description": "Active pack must exist."},
+    {"name": "tn_nda_approval_required", "rule_type": "export", "severity": "blocker", "applies_to": ["nda"], "config": {}, "description": "Approval required before final export."}
+  ],
+  "riskPlaybook": {
+    "name": "tn_nda_risks",
+    "rules": [
+      "Purpose of disclosure too broad.",
+      "Survival period shorter than the agreed protection term.",
+      "Missing exclusions for public information."
+    ]
+  },
+  "sources": [
+    {
+      "title": "Code des Obligations et des Contrats (Tunisie) — confidentialité",
+      "jurisdiction": "TN",
+      "source_type": "law",
+      "language": "fr",
+      "version": "1906-r2005",
+      "effective_date": "2005-08-15",
+      "description": "Tunisian Code of Obligations and Contracts — confidentiality provisions (demo sample, legal review required)",
+      "metadata": {"demo": "true"},
+      "chunks": [
+        {"content": "Article 242 COC: Contractual obligations validly formed bind the parties as law and may only be revoked by their mutual consent or in cases provided by law. Demo sample — legal review required.", "article": "242", "chunk_index": 0},
+        {"content": "Article 243 COC: Every engagement must be performed in good faith; it binds not only to what is expressed but also to all the consequences that law, usage or equity give to the obligation according to its nature. Demo sample — legal review required.", "article": "243", "chunk_index": 1}
+      ]
+    }
+  ]
+}

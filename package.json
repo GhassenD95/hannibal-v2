@@ -1,0 +1,7 @@
+{
+  "name": "hannibal-v2",
+  "private": true,
+  "workspaces": [
+    "apps/web"
+  ]
+}

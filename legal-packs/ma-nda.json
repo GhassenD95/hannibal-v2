@@ -1,0 +1,76 @@
+{
+  "pack": {
+    "name": "Morocco NDA Pack",
+    "description": "Moroccan law pack for non-disclosure agreements (demo sample — legal review required).",
+    "version": "1.0.0",
+    "metadata": {
+      "primary_language": "fr",
+      "secondary_language": "ar",
+      "demo": "true",
+      "warning": "Demo sample — legal review required"
+    },
+    "autoApproveDemoSources": true
+  },
+  "contractTypes": [
+    {
+      "name": "nda",
+      "description": "Mutual non-disclosure agreement.",
+      "intakeSchema": "ma_nda_intake",
+      "sectionDefinitions": [
+        {"name": "parties", "title": "Parties", "description": "Identifies the parties.", "is_required": true, "order_index": 1, "evidence_tags": ["identity"], "default_clause_titles": ["Party identification"]},
+        {"name": "confidentiality", "title": "Confidential Information", "description": "Definition and protection of confidential information.", "is_required": true, "order_index": 2, "evidence_tags": ["confidentiality"], "default_clause_titles": ["Confidentiality"]},
+        {"name": "exclusions", "title": "Exclusions", "description": "Information not deemed confidential.", "is_required": false, "order_index": 3, "evidence_tags": ["confidentiality"], "default_clause_titles": ["Confidentiality"]},
+        {"name": "term", "title": "Term and Survival", "description": "NDA duration and survival.", "is_required": true, "order_index": 4, "evidence_tags": ["termination"], "default_clause_titles": ["NDA term"]},
+        {"name": "governing_law", "title": "Governing Law", "description": "Moroccan law.", "is_required": true, "order_index": 5, "evidence_tags": ["governing_law"], "default_clause_titles": ["Governing law"]}
+      ]
+    }
+  ],
+  "intakeSchemas": [
+    {
+      "name": "ma_nda_intake",
+      "description": "Guided intake for Moroccan NDAs.",
+      "fields": [
+        {"field_name": "disclosing_party", "field_label": "Disclosing party", "field_type": "text", "is_required": true, "order_index": 1},
+        {"field_name": "receiving_party", "field_label": "Receiving party", "field_type": "text", "is_required": true, "order_index": 2},
+        {"field_name": "purpose", "field_label": "Purpose of disclosure", "field_type": "text", "is_required": true, "order_index": 3},
+        {"field_name": "jurisdiction", "field_label": "Governing law", "field_type": "select", "is_required": true, "options": ["MAROC"], "order_index": 4}
+      ]
+    }
+  ],
+  "clauses": [
+    {"title": "Party identification", "clause_type": "mandatory", "contract_type": "nda", "content": "This NDA is between [Disclosing Party] and [Receiving Party]. Demo sample — legal review required.", "description": "Identifies the parties"},
+    {"title": "Confidentiality", "clause_type": "mandatory", "contract_type": "nda", "content": "The Receiving Party agrees not to disclose or use Confidential Information except for [Purpose]. Demo sample — legal review required.", "description": "Confidential information protection"},
+    {"title": "NDA term", "clause_type": "mandatory", "contract_type": "nda", "content": "The obligations of confidentiality survive for five (5) years after the termination of this NDA. Demo sample — legal review required.", "description": "Term and survival"},
+    {"title": "Governing law", "clause_type": "mandatory", "contract_type": "nda", "content": "This NDA is governed by Moroccan law (D.O.C.). Demo sample — legal review required.", "description": "Moroccan governing law"}
+  ],
+  "validationRules": [
+    {"name": "required_sections_complete", "rule_type": "structure", "severity": "blocker", "applies_to": ["nda"], "config": {"required_sections": ["parties", "confidentiality", "term", "governing_law"]}, "description": "All required sections must be present."},
+    {"name": "placeholder_check", "rule_type": "evidence", "severity": "blocker", "applies_to": ["nda"], "config": {"patterns": ["\\[.*\\]", "\\{.*\\}"]}, "description": "No unresolved placeholders."},
+    {"name": "pack_match", "rule_type": "source_applicability", "severity": "blocker", "applies_to": ["nda"], "config": {}, "description": "Active pack must exist."},
+    {"name": "approval_required", "rule_type": "export", "severity": "blocker", "applies_to": ["nda"], "config": {}, "description": "Approval required before final export."}
+  ],
+  "riskPlaybook": {
+    "name": "ma_nda_risks",
+    "rules": [
+      "Purpose of disclosure too broad.",
+      "Survival period shorter than statutory minimum.",
+      "Missing exclusions for public information."
+    ]
+  },
+  "sources": [
+    {
+      "title": "Dahir of 12 August 1913 — Code des Obligations et Contrats (D.O.C.)",
+      "jurisdiction": "MA",
+      "source_type": "law",
+      "language": "fr",
+      "version": "1996",
+      "effective_date": "2000-01-01",
+      "description": "Moroccan Civil Code (demo sample — legal review required)",
+      "metadata": {"demo": "true"},
+      "chunks": [
+        {"content": "Article 230 D.O.C.: Obligations must be performed in good faith. Demo sample — legal review required.", "article": "230", "chunk_index": 0},
+        {"content": "Agreements must be performed and their terms honored by the parties. Demo sample — legal review required.", "article": null, "chunk_index": 1}
+      ]
+    }
+  ]
+}

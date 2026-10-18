@@ -1,0 +1,74 @@
+{
+  "fixtures": [
+    {
+      "id": "fixture_service_001",
+      "name": "Service agreement with IP transfer",
+      "jurisdiction": "MA",
+      "contractType": "service_agreement",
+      "input": {
+        "description": "I need a 12-month service agreement in Morocco for 20,000 MAD per month between TechCo and ServiceProvider",
+        "contract_type": "service_agreement",
+        "jurisdiction": "MA"
+      },
+      "expectedSections": [
+        "Parties",
+        "Scope",
+        "Payment",
+        "Confidentiality",
+        "Intellectual Property",
+        "Termination",
+        "Liability",
+        "Governing Law",
+        "Signatures"
+      ],
+      "requiredClauses": [
+        "Confidentiality clause",
+        "IP transfer after full payment",
+        "30-day termination notice",
+        "Two-installment payment"
+      ],
+      "expectedEvidence": [],
+      "expectedRisks": [
+        "Liability is uncapped",
+        "Payment terms not specified"
+      ],
+      "forbiddenClaims": [
+        "Auto-renewal without notice",
+        "Unlimited liability"
+      ]
+    },
+    {
+      "id": "fixture_nda_001",
+      "name": "NDA for technology transfer",
+      "jurisdiction": "MA",
+      "contractType": "nda",
+      "input": {
+        "description": "Non-disclosure agreement between Innovatech and PartnerCo for technology transfer evaluation",
+        "contract_type": "nda",
+        "jurisdiction": "MA"
+      },
+      "expectedSections": [
+        "Parties",
+        "Definition of Confidential Information",
+        "Exclusions",
+        "Duration",
+        "Return of Materials",
+        "Signatures"
+      ],
+      "requiredClauses": [
+        "Standard confidentiality clause",
+        "3-year confidentiality duration",
+        "Return or destruction of materials"
+      ],
+      "expectedEvidence": [],
+      "expectedRisks": [
+        "Overly broad definition of confidential information",
+        "Insufficient duration for protection"
+      ],
+      "forbiddenClaims": [
+        "No rights granted clause",
+        "Reverse engineering prohibition"
+      ]
+    }
+  ]
+}

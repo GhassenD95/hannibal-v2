@@ -1,0 +1,111 @@
+{
+  "pack": {
+    "name": "Morocco Service Agreement Pack",
+    "description": "Moroccan civil/commercial law pack for service agreements (demo sample — legal review required).",
+    "version": "1.0.0",
+    "metadata": {
+      "primary_language": "fr",
+      "secondary_language": "ar",
+      "demo": "true",
+      "warning": "Demo sample — legal review required"
+    },
+    "autoApproveDemoSources": true
+  },
+  "contractTypes": [
+    {
+      "name": "service_agreement",
+      "description": "Services agreement between a client and a service provider.",
+      "intakeSchema": "ma_service_intake",
+      "sectionDefinitions": [
+        {"name": "parties", "title": "Parties", "description": "Identifies the parties.", "is_required": true, "order_index": 1, "evidence_tags": ["identity"], "default_clause_titles": ["Party identification"]},
+        {"name": "subject", "title": "Subject of the Contract", "description": "Describes services and scope.", "is_required": true, "order_index": 2, "evidence_tags": ["obligations"], "default_clause_titles": ["Scope of services"]},
+        {"name": "payment", "title": "Payment and Pricing", "description": "Fees, currency, invoicing, late payment.", "is_required": true, "order_index": 3, "evidence_tags": ["payment", "currency"], "default_clause_titles": ["Payment terms"]},
+        {"name": "deadlines", "title": "Deadlines and Delays", "description": "Delivery schedule and force majeure.", "is_required": true, "order_index": 4, "evidence_tags": ["deadlines", "force_majeure"], "default_clause_titles": ["Deadlines"]},
+        {"name": "confidentiality", "title": "Confidentiality", "description": "Non-disclosure between the parties.", "is_required": true, "order_index": 5, "evidence_tags": ["confidentiality"], "default_clause_titles": ["Confidentiality"]},
+        {"name": "liability", "title": "Liability and Warranties", "description": "Liability caps, warranties, indemnities.", "is_required": true, "order_index": 6, "evidence_tags": ["liability"], "default_clause_titles": ["Liability"]},
+        {"name": "termination", "title": "Termination", "description": "Term, notice, termination grounds.", "is_required": true, "order_index": 7, "evidence_tags": ["termination"], "default_clause_titles": ["Termination"]},
+        {"name": "disputes", "title": "Dispute Resolution", "description": "Jurisdiction, arbitration clause.", "is_required": false, "order_index": 8, "evidence_tags": ["disputes"], "default_clause_titles": ["Dispute resolution"]},
+        {"name": "governing_law", "title": "Governing Law", "description": "Moroccan law (D.O.C., Code des obligations et contrats).", "is_required": true, "order_index": 9, "evidence_tags": ["governing_law"], "default_clause_titles": ["Governing law"]}
+      ]
+    }
+  ],
+  "intakeSchemas": [
+    {
+      "name": "ma_service_intake",
+      "description": "Guided intake for Moroccan service agreements.",
+      "fields": [
+        {"field_name": "client_name", "field_label": "Client legal name", "field_type": "text", "is_required": true, "order_index": 1},
+        {"field_name": "client_address", "field_label": "Client address", "field_type": "text", "is_required": false, "order_index": 2},
+        {"field_name": "provider_name", "field_label": "Service provider legal name", "field_type": "text", "is_required": true, "order_index": 3},
+        {"field_name": "provider_address", "field_label": "Service provider address", "field_type": "text", "is_required": false, "order_index": 4},
+        {"field_name": "service_description", "field_label": "Services to be provided", "field_type": "rich text", "is_required": true, "order_index": 5},
+        {"field_name": "currency", "field_label": "Currency", "field_type": "select", "is_required": true, "options": ["MAD", "USD", "EUR"], "order_index": 6},
+        {"field_name": "amount", "field_label": "Total amount", "field_type": "money", "is_required": true, "order_index": 7},
+        {"field_name": "start_date", "field_label": "Start date", "field_type": "date", "is_required": true, "order_index": 8},
+        {"field_name": "end_date", "field_label": "End date", "field_type": "date", "is_required": false, "order_index": 9}
+      ]
+    }
+  ],
+  "clauses": [
+    {"title": "Party identification", "clause_type": "mandatory", "contract_type": "service_agreement", "content": "This Agreement is entered into between [Client] (the \"Client\") and [Provider] (the \"Provider\"). Demo sample — legal review required.", "description": "Identifies both parties"},
+    {"title": "Scope of services", "clause_type": "mandatory", "contract_type": "service_agreement", "content": "The Provider shall render the services described in the attached schedule diligently and in a professional manner. Demo sample — legal review required.", "description": "Scope of services"},
+    {"title": "Payment terms", "clause_type": "mandatory", "contract_type": "service_agreement", "content": "In consideration of the services, the Client shall pay the Provider the amount of {amount} in {currency}, payable per the invoice schedule. Demo sample — legal review required.", "description": "Fees, currency, invoicing"},
+    {"title": "Late payment", "clause_type": "optional", "contract_type": "service_agreement", "content": "Any amount unpaid thirty (30) days after its due date shall bear interest at the statutory rate applicable under Moroccan law. Demo sample — legal review required.", "description": "Late payment interest"},
+    {"title": "Deadlines", "clause_type": "mandatory", "contract_type": "service_agreement", "content": "The Provider shall deliver the deliverables on or before the agreed deadlines, unless delayed by force majeure. Demo sample — legal review required.", "description": "Delivery schedule"},
+    {"title": "Confidentiality", "clause_type": "mandatory", "contract_type": "service_agreement", "content": "Each party shall keep confidential all non-public information received from the other party and shall use it solely for the purposes of this Agreement. Demo sample — legal review required.", "description": "Non-disclosure"},
+    {"title": "Liability", "clause_type": "mandatory", "contract_type": "service_agreement", "content": "The Provider's aggregate liability under this Agreement shall not exceed the total fees paid by the Client under it, except in case of fraud or gross negligence. Demo sample — legal review required.", "description": "Liability cap"},
+    {"title": "Termination", "clause_type": "mandatory", "contract_type": "service_agreement", "content": "This Agreement may be terminated by either party upon thirty (30) days written notice, or immediately upon a material breach that remains uncured for fifteen (15) days. Demo sample — legal review required.", "description": "Term and termination"},
+    {"title": "Dispute resolution", "clause_type": "optional", "contract_type": "service_agreement", "content": "The parties shall first attempt to settle disputes amicably; failing that, disputes shall be submitted to the competent courts of Morocco. Demo sample — legal review required.", "description": "Dispute settlement"},
+    {"title": "Governing law", "clause_type": "mandatory", "contract_type": "service_agreement", "content": "This Agreement is governed by and construed in accordance with Moroccan law, including the Dahir of 12 August 1913 (Obligations and Contracts, D.O.C.). Demo sample — legal review required.", "description": "Moroccan governing law"}
+  ],
+  "validationRules": [
+    {"name": "required_sections_complete", "rule_type": "structure", "severity": "blocker", "applies_to": ["service_agreement"], "config": {"required_sections": ["parties", "subject", "payment", "termination", "governing_law"]}, "description": "All required sections must be present."},
+    {"name": "placeholder_check", "rule_type": "evidence", "severity": "blocker", "applies_to": ["service_agreement"], "config": {"patterns": ["\\[.*\\]", "\\{.*\\}"]}, "description": "No unresolved placeholders in section content."},
+    {"name": "currency_consistency", "rule_type": "consistency", "severity": "high", "applies_to": ["service_agreement"], "config": {}, "description": "Currency in facts must match section content."},
+    {"name": "pack_match", "rule_type": "source_applicability", "severity": "blocker", "applies_to": ["service_agreement"], "config": {}, "description": "An active pack must exist for the contract type and jurisdiction."},
+    {"name": "source_status", "rule_type": "source_applicability", "severity": "high", "applies_to": ["service_agreement"], "config": {}, "description": "All referenced sources must be approved and effective."},
+    {"name": "clause_status", "rule_type": "evidence", "severity": "high", "applies_to": ["service_agreement"], "config": {}, "description": "All referenced clauses must be approved."},
+    {"name": "approval_required", "rule_type": "export", "severity": "blocker", "applies_to": ["service_agreement"], "config": {}, "description": "Approval required before final export."},
+    {"name": "no_open_blockers_on_export", "rule_type": "export", "severity": "blocker", "applies_to": ["service_agreement"], "config": {}, "description": "No open blocker findings before export."}
+  ],
+  "riskPlaybook": {
+    "name": "ma_service_agreement_risks",
+    "rules": [
+      "Unresolved placeholders indicate an incomplete section.",
+      "Currency mismatch between facts and payment section.",
+      "Missing governing law section for Moroccan contract.",
+      "Late payment interest above statutory ceiling.",
+      "Liability cap absent or excessive exposure."
+    ]
+  },
+  "sources": [
+    {
+      "title": "Dahir of 12 August 1913 — Code des Obligations et Contrats (D.O.C.)",
+      "jurisdiction": "MA",
+      "source_type": "law",
+      "language": "fr",
+      "version": "1996",
+      "effective_date": "2000-01-01",
+      "description": "Moroccan Civil Code (demo sample — legal review required)",
+      "metadata": {"demo": "true"},
+      "chunks": [
+        {"content": "Article 230 D.O.C.: Obligations must be performed in good faith. Demo sample — legal review required.", "article": "230", "chunk_index": 0},
+        {"content": "Article 259 D.O.C.: Where no price is fixed by the parties, the price shall be the one customarily charged at the time of performance. Demo sample — legal review required.", "article": "259", "chunk_index": 1},
+        {"content": "Late payment interest in contractual matters must not exceed the statutory ceiling. Demo sample — legal review required.", "article": null, "chunk_index": 2}
+      ]
+    },
+    {
+      "title": "Code de Commerce — Commercial Obligations",
+      "jurisdiction": "MA",
+      "source_type": "law",
+      "language": "fr",
+      "version": "2016",
+      "effective_date": "2017-01-01",
+      "description": "Moroccan Commercial Code (demo sample — legal review required)",
+      "metadata": {"demo": "true"},
+      "chunks": [
+        {"content": "Commercial contracts between professionals must be in writing. Demo sample — legal review required.", "article": null, "chunk_index": 0}
+      ]
+    }
+  ]
+}

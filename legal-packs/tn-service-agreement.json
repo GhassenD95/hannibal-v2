@@ -1,0 +1,129 @@
+{
+  "pack": {
+    "name": "Tunisia Service Agreement Pack",
+    "description": "Tunisian civil/commercial law pack for service agreements (demo sample — legal review required).",
+    "version": "1.0.0",
+    "jurisdiction": "TN",
+    "metadata": {
+      "primary_language": "fr",
+      "secondary_language": "ar",
+      "demo": "true",
+      "warning": "Demo sample — legal review required"
+    },
+    "autoApproveDemoSources": true
+  },
+  "contractTypes": [
+    {
+      "name": "service_agreement",
+      "description": "Services agreement between a client and a service provider (Tunisia).",
+      "intakeSchema": "tn_service_intake",
+      "sectionDefinitions": [
+        {"name": "parties", "title": "Parties", "description": "Identifies the parties.", "is_required": true, "order_index": 1, "evidence_tags": ["identity"], "default_clause_titles": ["Party identification"]},
+        {"name": "subject", "title": "Subject of the Contract", "description": "Describes services and scope.", "is_required": true, "order_index": 2, "evidence_tags": ["obligations"], "default_clause_titles": ["Scope of services"]},
+        {"name": "payment", "title": "Payment and Pricing", "description": "Fees, currency, invoicing, late payment.", "is_required": true, "order_index": 3, "evidence_tags": ["payment", "currency"], "default_clause_titles": ["Payment terms"]},
+        {"name": "deadlines", "title": "Deadlines and Delays", "description": "Delivery schedule and force majeure.", "is_required": true, "order_index": 4, "evidence_tags": ["deadlines", "force_majeure"], "default_clause_titles": ["Deadlines"]},
+        {"name": "confidentiality", "title": "Confidentiality", "description": "Non-disclosure between the parties.", "is_required": true, "order_index": 5, "evidence_tags": ["confidentiality"], "default_clause_titles": ["Confidentiality"]},
+        {"name": "liability", "title": "Liability and Warranties", "description": "Liability caps, warranties, indemnities.", "is_required": true, "order_index": 6, "evidence_tags": ["liability"], "default_clause_titles": ["Liability"]},
+        {"name": "termination", "title": "Termination", "description": "Term, notice, termination grounds.", "is_required": true, "order_index": 7, "evidence_tags": ["termination"], "default_clause_titles": ["Termination"]},
+        {"name": "disputes", "title": "Dispute Resolution", "description": "Jurisdiction, arbitration clause.", "is_required": false, "order_index": 8, "evidence_tags": ["disputes"], "default_clause_titles": ["Dispute resolution"]},
+        {"name": "governing_law", "title": "Governing Law", "description": "Tunisian law (COC, Code des obligations et des contrats).", "is_required": true, "order_index": 9, "evidence_tags": ["governing_law"], "default_clause_titles": ["Governing law"]}
+      ]
+    }
+  ],
+  "intakeSchemas": [
+    {
+      "name": "tn_service_intake",
+      "description": "Guided intake for Tunisian service agreements.",
+      "fields": [
+        {"field_name": "client_name", "field_label": "Client legal name", "field_type": "text", "is_required": true, "order_index": 1},
+        {"field_name": "client_address", "field_label": "Client address", "field_type": "text", "is_required": false, "order_index": 2},
+        {"field_name": "provider_name", "field_label": "Service provider legal name", "field_type": "text", "is_required": true, "order_index": 3},
+        {"field_name": "provider_address", "field_label": "Service provider address", "field_type": "text", "is_required": false, "order_index": 4},
+        {"field_name": "service_description", "field_label": "Services to be provided", "field_type": "rich text", "is_required": true, "order_index": 5},
+        {"field_name": "currency", "field_label": "Currency", "field_type": "select", "is_required": true, "options": ["TND", "EUR", "USD"], "order_index": 6},
+        {"field_name": "amount", "field_label": "Total amount", "field_type": "money", "is_required": true, "order_index": 7},
+        {"field_name": "start_date", "field_label": "Start date", "field_type": "date", "is_required": true, "order_index": 8},
+        {"field_name": "end_date", "field_label": "End date", "field_type": "date", "is_required": false, "order_index": 9}
+      ]
+    }
+  ],
+  "clauses": [
+    {"title": "Party identification", "clause_type": "mandatory", "contract_type": "service_agreement", "content": "This Agreement is entered into between [Client] (the \"Client\") and [Provider] (the \"Provider\"). Demo sample — legal review required.", "description": "Identifies both parties"},
+    {"title": "Scope of services", "clause_type": "mandatory", "contract_type": "service_agreement", "content": "The Provider shall render the services described in the attached schedule diligently and in a professional manner. Demo sample — legal review required.", "description": "Scope of services"},
+    {"title": "Payment terms", "clause_type": "mandatory", "contract_type": "service_agreement", "content": "In consideration of the services, the Client shall pay the Provider the amount of {amount} in {currency} (Tunisian dinars unless otherwise agreed), payable per the invoice schedule. Demo sample — legal review required.", "description": "Fees, currency, invoicing"},
+    {"title": "Late payment", "clause_type": "optional", "contract_type": "service_agreement", "content": "Any amount unpaid thirty (30) days after its due date shall bear interest at the rate set by Article 1100 of the Code des obligations et des contrats, as amended by Law No. 83-14 of 15 February 1983 (7% per annum in civil matters; in commercial matters the maximum bank overdraft rate fixed by the Central Bank plus half a point). Demo sample — legal review required.", "description": "Late payment interest"},
+    {"title": "Deadlines", "clause_type": "mandatory", "contract_type": "service_agreement", "content": "The Provider shall deliver the deliverables on or before the agreed deadlines. The Provider is not liable for delay or non-performance caused by force majeure as defined in Articles 282 and 283 of the Code des obligations et des contrats. Demo sample — legal review required.", "description": "Delivery schedule and force majeure"},
+    {"title": "Confidentiality", "clause_type": "mandatory", "contract_type": "service_agreement", "content": "Each party shall keep confidential all non-public information received from the other party and shall use it solely for the purposes of this Agreement, in accordance with the duty of good faith under Article 243 of the Code des obligations et des contrats. Demo sample — legal review required.", "description": "Non-disclosure"},
+    {"title": "Liability", "clause_type": "mandatory", "contract_type": "service_agreement", "content": "The Provider's aggregate liability under this Agreement shall not exceed the total fees paid by the Client under it. Under Article 244 of the Code des obligations et des contrats, no clause may exclude liability for gross negligence (faute lourde) or fraud (dol). Demo sample — legal review required.", "description": "Liability cap"},
+    {"title": "Termination", "clause_type": "mandatory", "contract_type": "service_agreement", "content": "This Agreement may be terminated by either party upon thirty (30) days written notice, or immediately upon a material breach that remains uncured for fifteen (15) days. Demo sample — legal review required.", "description": "Term and termination"},
+    {"title": "Dispute resolution", "clause_type": "optional", "contract_type": "service_agreement", "content": "The parties shall first attempt to settle disputes amicably; failing that, disputes shall be submitted to arbitration in Tunisia in accordance with the Code de l'arbitrage (Law No. 93-42 of 26 April 1993), or to the competent Tunisian courts. Demo sample — legal review required.", "description": "Dispute settlement"},
+    {"title": "Governing law", "clause_type": "mandatory", "contract_type": "service_agreement", "content": "This Agreement is governed by and construed in accordance with Tunisian law, including the Code des obligations et des contrats (Decree of 15 December 1906, reorganized by Law No. 2005-87 of 15 August 2005). Demo sample — legal review required.", "description": "Tunisian governing law"}
+  ],
+  "validationRules": [
+    {"name": "tn_required_sections_complete", "rule_type": "structure", "severity": "blocker", "applies_to": ["service_agreement"], "config": {"required_sections": ["parties", "subject", "payment", "termination", "governing_law"]}, "description": "All required sections must be present."},
+    {"name": "tn_placeholder_check", "rule_type": "evidence", "severity": "blocker", "applies_to": ["service_agreement"], "config": {"patterns": ["\\[.*\\]", "\\{.*\\}"]}, "description": "No unresolved placeholders in section content."},
+    {"name": "tn_currency_consistency", "rule_type": "consistency", "severity": "high", "applies_to": ["service_agreement"], "config": {}, "description": "Currency in facts must match section content."},
+    {"name": "tn_pack_match", "rule_type": "source_applicability", "severity": "blocker", "applies_to": ["service_agreement"], "config": {}, "description": "An active pack must exist for the contract type and jurisdiction."},
+    {"name": "tn_source_status", "rule_type": "source_applicability", "severity": "high", "applies_to": ["service_agreement"], "config": {}, "description": "All referenced sources must be approved and effective."},
+    {"name": "tn_clause_status", "rule_type": "evidence", "severity": "high", "applies_to": ["service_agreement"], "config": {}, "description": "All referenced clauses must be approved."},
+    {"name": "tn_approval_required", "rule_type": "export", "severity": "blocker", "applies_to": ["service_agreement"], "config": {}, "description": "Approval required before final export."},
+    {"name": "tn_no_open_blockers_on_export", "rule_type": "export", "severity": "blocker", "applies_to": ["service_agreement"], "config": {}, "description": "No open blocker findings before export."}
+  ],
+  "riskPlaybook": {
+    "name": "tn_service_agreement_risks",
+    "rules": [
+      "Unresolved placeholders indicate an incomplete section.",
+      "Currency mismatch between facts and payment section.",
+      "Missing governing law section for Tunisian contract.",
+      "Late payment interest above the Article 1100 COC ceiling (7% civil; commercial: BCT maximum overdraft rate + 0.5 point).",
+      "Liability clause purporting to exclude fraud or gross negligence (void under Article 244 COC)."
+    ]
+  },
+  "sources": [
+    {
+      "title": "Code des Obligations et des Contrats (Tunisie) — services",
+      "jurisdiction": "TN",
+      "source_type": "law",
+      "language": "fr",
+      "version": "1906-r2005",
+      "effective_date": "2005-08-15",
+      "description": "Tunisian Code of Obligations and Contracts (Decree of 15 December 1906, reorganized by Law No. 2005-87 of 15 August 2005) — demo sample, legal review required",
+      "metadata": {"demo": "true"},
+      "chunks": [
+        {"content": "Article 23 COC: A contract is perfected by the parties' agreement on the essential elements of the obligation and on all other lawful terms the parties consider essential. Demo sample — legal review required.", "article": "23", "chunk_index": 0},
+        {"content": "Article 242 COC: Contractual obligations validly formed bind the parties as law (tiennent lieu de loi) and may only be revoked by their mutual consent or in cases provided by law. Demo sample — legal review required.", "article": "242", "chunk_index": 1},
+        {"content": "Article 243 COC: Every engagement must be performed in good faith; it binds not only to what is expressed but also to all the consequences that law, usage or equity give to the obligation according to its nature. Demo sample — legal review required.", "article": "243", "chunk_index": 2},
+        {"content": "Article 244 COC: One may not stipulate in advance that one will not be liable for one's gross negligence (faute lourde) or fraud (dol). Demo sample — legal review required.", "article": "244", "chunk_index": 3},
+        {"content": "Article 282 COC: No damages are due when the debtor proves that the non-performance or delay results from a cause not attributable to it, such as force majeure, fortuitous event, or the creditor's default. Demo sample — legal review required.", "article": "282", "chunk_index": 4},
+        {"content": "Article 283 COC: Force majeure is any event a person cannot prevent (natural phenomena, enemy invasion, act of a public authority) that makes performance of the obligation impossible. Demo sample — legal review required.", "article": "283", "chunk_index": 5},
+        {"content": "Article 1100 COC (as amended by Law No. 83-14 of 15 February 1983): Where the parties have not fixed the interest rate, the legal rate applies — 7% per annum in civil matters; in commercial matters, the maximum bank overdraft rate set by the Central Bank plus half a point. Demo sample — legal review required.", "article": "1100", "chunk_index": 6}
+      ]
+    },
+    {
+      "title": "Code de commerce (Tunisie) — loi n°59-129 du 5 octobre 1959",
+      "jurisdiction": "TN",
+      "source_type": "law",
+      "language": "fr",
+      "version": "1959",
+      "effective_date": "1959-10-05",
+      "description": "Tunisian Commercial Code (demo sample — legal review required)",
+      "metadata": {"demo": "true"},
+      "chunks": [
+        {"content": "Article 597 Code de commerce: All commercial contracts are governed by the Commercial Code; failing that, by the Code des obligations et des contrats; failing that, by usage. Demo sample — legal review required.", "article": "597", "chunk_index": 0}
+      ]
+    },
+    {
+      "title": "Code de l'arbitrage (Tunisie) — loi n°93-42 du 26 avril 1993",
+      "jurisdiction": "TN",
+      "source_type": "law",
+      "language": "fr",
+      "version": "1993",
+      "effective_date": "1993-10-26",
+      "description": "Tunisian Arbitration Code (demo sample — legal review required)",
+      "metadata": {"demo": "true"},
+      "chunks": [
+        {"content": "Code de l'arbitrage (Law No. 93-42 of 26 April 1993): the parties may freely agree to submit existing or future disputes to arbitration; the arbitration agreement must be in writing. Demo sample — legal review required.", "article": null, "chunk_index": 0}
+      ]
+    }
+  ]
+}

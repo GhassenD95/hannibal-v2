@@ -1,0 +1,14 @@
+# Keep build contexts small and reproducible
+**/node_modules
+**/.next
+**/__pycache__
+**/*.pyc
+**/.pytest_cache
+**/test-results
+**/playwright-report
+.venv
+.git
+.opencode
+.playwright-mcp
+.env
+*.log
